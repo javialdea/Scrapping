@@ -1,12 +1,18 @@
 {
   "palabrasClave": [
-    "subvención",
-    "subvenciones",
-    "licitación",
-    "contratación pública"
+    "discapacidad*",
+    "ley de dependencia",
+    "situación de dependencia",
+    "grado de dependencia",
+    "ayudas a la dependencia",
+    "ONCE",
+    "Fundación ONCE"
   ],
   "busquedasGoogleNews": [
-    "\"Plataforma de Contratación del Sector Público\""
+    "discapacidad",
+    "\"ley de dependencia\" OR \"situación de dependencia\" OR \"grado de dependencia\" OR \"ayudas a la dependencia\"",
+    "ONCE",
+    "\"Fundación ONCE\""
   ],
   "fuentes": [
     { "nombre": "El País", "rss": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada" },

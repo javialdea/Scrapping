@@ -25,11 +25,10 @@ export async function recoger() {
 
   const vistos = await cargarVistos(CARPETA);
   const fuentes = [
-    ...config.fuentes.map((f) => ({ ...f, filtrar: true })),
+    ...config.fuentes,
     ...config.busquedasGoogleNews.map((q) => ({
       nombre: `Google News: ${q}`,
       rss: urlGoogleNews(q),
-      filtrar: false,
       busqueda: q,
     })),
   ];
@@ -74,13 +73,9 @@ function procesar(item, fuente, config) {
   if (medio && titulo.endsWith(` - ${medio}`)) titulo = titulo.slice(0, -(medio.length + 3));
 
   const resumen = item.contentSnippet || limpiarHtml(item.content || item.summary || '');
-  let coincidencias;
-  if (fuente.filtrar) {
-    coincidencias = buscarPalabras(`${titulo} ${resumen}`, config.palabrasClave);
-    if (coincidencias.length === 0) return null;
-  } else {
-    coincidencias = [fuente.busqueda];
-  }
+  // También se filtran los resultados de Google News: Google no distingue "ONCE" de "once".
+  const coincidencias = buscarPalabras(`${titulo} ${resumen}`, config.palabrasClave);
+  if (coincidencias.length === 0) return null;
 
   return {
     fecha: item.isoDate ?? '',

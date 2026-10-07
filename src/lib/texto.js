@@ -3,11 +3,30 @@ export function normalizar(texto = '') {
   return texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 }
 
-// Devuelve las palabras clave que aparecen en el texto.
+// Devuelve las palabras clave que aparecen en el texto como palabras completas.
+// - Sin distinguir mayúsculas ni tildes: "accesibilidad" encuentra "Accesibilidad".
+// - Terminada en *, busca el principio de palabra: "discapacidad*" encuentra "discapacidades".
+// - Escrita toda en mayúsculas es una sigla y debe aparecer igual: "ELA" no encuentra "ela".
 export function buscarPalabras(texto, palabras) {
-  const normalizado = normalizar(texto);
-  return palabras.filter((p) => normalizado.includes(normalizar(p)));
+  return palabras.filter((p) => patronDe(p).test(sinTildes(texto)));
 }
+
+const patrones = new Map();
+
+function patronDe(palabra) {
+  if (!patrones.has(palabra)) {
+    const prefijo = palabra.endsWith('*');
+    const limpia = sinTildes(prefijo ? palabra.slice(0, -1) : palabra).trim();
+    const esSigla = limpia.length > 1 && limpia === limpia.toUpperCase() && limpia !== limpia.toLowerCase();
+    const cuerpo = limpia.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+');
+    // \p{L}\p{N} en lugar de \b para que funcione con ñ y demás letras no inglesas.
+    const fuente = `(?<![\\p{L}\\p{N}])${cuerpo}${prefijo ? '' : '(?![\\p{L}\\p{N}])'}`;
+    patrones.set(palabra, new RegExp(fuente, esSigla ? 'u' : 'iu'));
+  }
+  return patrones.get(palabra);
+}
+
+const sinTildes = (texto = '') => texto.normalize('NFD').replace(/[̀-ͯ]/g, '');
 
 export function limpiarHtml(html = '') {
   return html
