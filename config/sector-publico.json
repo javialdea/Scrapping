@@ -1,0 +1,13 @@
+{
+  "palabrasClave": [
+    "inteligencia artificial",
+    "transformación digital",
+    "ciberseguridad",
+    "eficiencia energética"
+  ],
+  "organismos": [],
+  "diasAtras": 1,
+  "boe": { "activo": true },
+  "contratacion": { "activo": true, "maxPaginas": 10 },
+  "subvenciones": { "activo": true, "maxPaginas": 30 }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "scrapping",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Scrapers y clipping de medios y administraciones públicas",
+  "scripts": {
+    "clipping": "node src/run.js clipping",
+    "sector-publico": "node src/run.js sector-publico",
+    "diario": "node --env-file-if-exists=.env src/run.js diario"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.11.2",
+    "nodemailer": "^10.0.16",
+    "rss-parser": "^3.13.0"
+  }
+}

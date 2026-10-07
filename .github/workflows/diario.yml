@@ -1,0 +1,49 @@
+name: Vigilancia diaria
+
+on:
+  schedule:
+    # Hora en UTC: 06:00 UTC son las 8:00 en horario de verano y las 7:00 en invierno (hora peninsular).
+    # GitHub puede retrasar unos minutos las ejecuciones programadas.
+    - cron: '0 6 * * 1-5'
+  # Permite lanzarlo a mano desde la pestaña Actions.
+  workflow_dispatch:
+
+concurrency:
+  group: vigilancia-diaria
+
+jobs:
+  diario:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TZ: Europe/Madrid
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Recupera lo ya enviado en días anteriores para no repetir resultados.
+      - name: Recuperar historial
+        uses: actions/cache/restore@v4
+        with:
+          path: resultados
+          key: resultados-${{ github.run_id }}
+          restore-keys: resultados-
+
+      - name: Recoger y enviar correo
+        run: npm run diario
+        env:
+          GMAIL_USUARIO: ${{ secrets.GMAIL_USUARIO }}
+          GMAIL_CONTRASENA_APP: ${{ secrets.GMAIL_CONTRASENA_APP }}
+          CORREO_DESTINO: ${{ secrets.CORREO_DESTINO }}
+
+      - name: Guardar historial
+        uses: actions/cache/save@v4
+        with:
+          path: resultados
+          key: resultados-${{ github.run_id }}
