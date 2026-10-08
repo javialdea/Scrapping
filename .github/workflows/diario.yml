@@ -3,7 +3,7 @@ name: Vigilancia diaria
 on:
   schedule:
     # Hora en UTC: 06:00 UTC son las 8:00 en horario de verano y las 7:00 en invierno (hora peninsular).
-    # GitHub puede retrasar unos minutos las ejecuciones programadas.
+    # GitHub puede retrasar las ejecuciones programadas, a veces varias horas.
     - cron: '0 6 * * 1-5'
   # Permite lanzarlo a mano desde la pestaña Actions.
   workflow_dispatch:
@@ -18,9 +18,9 @@ jobs:
     env:
       TZ: Europe/Madrid
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -29,10 +29,10 @@ jobs:
 
       # Recupera lo ya enviado en días anteriores para no repetir resultados.
       - name: Recuperar historial
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: resultados
-          key: resultados-${{ github.run_id }}
+          key: resultados-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: resultados-
 
       - name: Recoger y enviar correo
@@ -43,7 +43,8 @@ jobs:
           CORREO_DESTINO: ${{ secrets.CORREO_DESTINO }}
 
       - name: Guardar historial
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: resultados
-          key: resultados-${{ github.run_id }}
+          # Incluye el intento: al pulsar "Re-run" se repite el run_id y la caché no se podría guardar.
+          key: resultados-${{ github.run_id }}-${{ github.run_attempt }}
