@@ -55,7 +55,12 @@ export function componerCorreo(secciones, fecha) {
     `Vigilancia diaria · ${fechaLarga}`,
     ...secciones.flatMap((s) => s.registros.length === 0 ? [] : [
       '', `== ${s.titulo} (${s.registros.length}) ==`,
-      ...s.registros.map((r) => `- ${r.titulo}\n  ${[r.organismo || r.fuente, r.fragmento].filter(Boolean).join(' · ')}\n  ${r.enlace}`),
+      ...s.registros.map((r) => [
+        `- ${r.titulo}`,
+        `  ${[r.organismo || r.fuente, r.fragmento].filter(Boolean).join(' · ')}`,
+        ...(r.parrafos ?? []).map((p) => `  > ${p}`),
+        `  ${r.enlace}`,
+      ].join('\n')),
     ]),
     ...(total === 0 ? ['', 'Hoy no hay publicaciones nuevas que coincidan con tus palabras clave.'] : []),
   ].join('\n');
@@ -73,6 +78,8 @@ function tarjeta(r) {
             <a href="${e(r.enlace)}" style="color:${COLOR.acento};text-decoration:none;">${e(r.titulo)}</a>
           </div>
           ${r.fragmento ? `<div style="${FUENTE_LETRA}font-size:13px;color:${COLOR.suave};">${e(r.fragmento)}</div>` : ''}
+          ${(r.parrafos ?? []).map((p) => `
+          <div style="${FUENTE_LETRA}font-size:13px;line-height:1.5;color:${COLOR.texto};border-left:3px solid ${COLOR.acento};padding:4px 0 4px 10px;margin:8px 0;">${e(p)}</div>`).join('')}
           <div style="${FUENTE_LETRA}font-size:12px;color:${COLOR.suave};margin-top:6px;">🔎 ${e(r.coincidencias)}</div>
         </td></tr>
       </table>`;

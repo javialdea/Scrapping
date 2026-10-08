@@ -43,6 +43,7 @@ export async function generarInforme(ruta, registros, opciones) {
   a { color: var(--acento); text-decoration: none; }
   a:hover { text-decoration: underline; }
   p { margin: 0 0 8px; color: var(--suave); }
+  blockquote { margin: 8px 0; padding: 2px 0 2px 10px; border-left: 3px solid var(--acento); font-size: .92rem; }
   .tags span { display: inline-block; font-size: .75rem; border: 1px solid var(--borde); border-radius: 99px; padding: 1px 8px; margin-right: 4px; }
 </style>
 </head>
@@ -68,6 +69,7 @@ function tarjeta(r, mostrarFuente) {
       <div class="meta">${meta.map(e).join(' · ')}</div>
       <h3><a href="${e(r.enlace)}" target="_blank" rel="noopener">${e(r.titulo)}</a></h3>
       ${r.fragmento ? `<p>${e(r.fragmento)}</p>` : ''}
+      ${(r.parrafos ?? []).map((p) => `<blockquote>${e(p)}</blockquote>`).join('')}
       <div class="tags">${r.coincidencias.split(', ').map((c) => `<span>${e(c)}</span>`).join('')}</div>
     </article>`;
 }

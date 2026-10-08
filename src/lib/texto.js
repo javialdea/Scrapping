@@ -7,8 +7,15 @@ export function normalizar(texto = '') {
 // - Sin distinguir mayúsculas ni tildes: "accesibilidad" encuentra "Accesibilidad".
 // - Terminada en *, busca el principio de palabra: "discapacidad*" encuentra "discapacidades".
 // - Escrita toda en mayúsculas es una sigla y debe aparecer igual: "ELA" no encuentra "ela".
+// - Como objeto { palabra, requiere: [...] }, solo cuenta si en el texto aparece además alguna
+//   palabra de `requiere`. Sirve para siglas ambiguas como "POP".
 export function buscarPalabras(texto, palabras) {
-  return palabras.filter((p) => patronDe(p).test(sinTildes(texto)));
+  const limpio = sinTildes(texto);
+  return palabras
+    .map((p) => (typeof p === 'string' ? { palabra: p } : p))
+    .filter(({ palabra, requiere }) =>
+      patronDe(palabra).test(limpio) && (!requiere || requiere.some((r) => patronDe(r).test(limpio))))
+    .map(({ palabra }) => palabra);
 }
 
 const patrones = new Map();

@@ -1,6 +1,12 @@
 {
   "palabrasClave": [
-    "POP",
+    {
+      "palabra": "POP",
+      "requiere": [
+        "paciente*", "salud", "sanidad", "sanitari*", "medicament*", "fármaco*", "enfermedad*",
+        "hospital*", "Plataforma de Organizaciones de Pacientes", "Carina Escobar", "Pedro Carrascal"
+      ]
+    },
     "Plataforma de Organizaciones de Pacientes",
     "Carina Escobar",
     "Pedro Carrascal",
@@ -8,10 +14,13 @@
   ],
   "busquedasGoogleNews": [
     "\"Plataforma de Organizaciones de Pacientes\"",
-    "\"Carina Escobar\"",
-    "\"Pedro Carrascal\"",
     "discapacidad"
   ],
+  "textoCompleto": {
+    "nombres": ["Carina Escobar", "Pedro Carrascal"],
+    "tambienEnNoticiasDe": ["POP", "Plataforma de Organizaciones de Pacientes"],
+    "maxParrafos": 3
+  },
   "fuentes": [
     { "nombre": "El País", "rss": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada" },
     { "nombre": "elDiario.es", "rss": "https://www.eldiario.es/rss/" },

@@ -7,7 +7,7 @@ import { generarInforme } from './informe.js';
 export const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 const MAX_VISTOS = 20000;
-const COLUMNAS = ['fecha', 'fuente', 'organismo', 'titulo', 'fragmento', 'enlace', 'coincidencias'];
+const COLUMNAS = ['fecha', 'fuente', 'organismo', 'titulo', 'fragmento', 'parrafos', 'enlace', 'coincidencias'];
 
 export function carpetaResultados(modulo) {
   return path.join(RAIZ, 'resultados', modulo);
@@ -29,7 +29,8 @@ export async function guardarDelDia(carpeta, nuevos, opcionesInforme) {
     .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
   await escribirJson(`${rutaBase}.json`, delDia);
-  await escribirCsv(`${rutaBase}.csv`, delDia, COLUMNAS);
+  const filasCsv = delDia.map((r) => ({ ...r, parrafos: r.parrafos?.join(' […] ') }));
+  await escribirCsv(`${rutaBase}.csv`, filasCsv, COLUMNAS);
   await generarInforme(`${rutaBase}.html`, delDia, { ...opcionesInforme, dia: hoy });
 
   console.log(`\n${nuevos.length} registros nuevos (${delDia.length} en total hoy).`);

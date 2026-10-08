@@ -1,6 +1,12 @@
 {
   "palabrasClave": [
-    "POP",
+    {
+      "palabra": "POP",
+      "requiere": [
+        "paciente*", "salud", "sanidad", "sanitari*", "medicament*", "fármaco*", "enfermedad*",
+        "hospital*", "Plataforma de Organizaciones de Pacientes", "Carina Escobar", "Pedro Carrascal"
+      ]
+    },
     "Plataforma de Organizaciones de Pacientes",
     "Carina Escobar",
     "Pedro Carrascal",

@@ -25,7 +25,9 @@ export async function ejecutar() {
 
   const secciones = [
     ...SECCIONES.map((s) => ({ ...s, registros: publico.nuevos.filter((r) => r.fuente === s.fuente) })),
-    { titulo: 'Prensa', corto: 'noticias', registros: prensa.nuevos },
+    // Las noticias que citan a las personas de `textoCompleto` van aparte, antes del resto.
+    { titulo: 'Menciones', corto: 'menciones', registros: prensa.nuevos.filter((r) => r.mencion) },
+    { titulo: 'Prensa', corto: 'noticias', registros: prensa.nuevos.filter((r) => !r.mencion) },
   ];
   const correo = componerCorreo(secciones, new Date());
 

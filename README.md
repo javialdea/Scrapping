@@ -21,7 +21,16 @@ Lee los RSS de `config/clipping.json`, se queda con las noticias que contienen a
 Resultados en `resultados/clipping/AAAA-MM-DD.{html,csv,json}`.
 
 **Modo seguro:** solo se guarda titular, fragmento corto (`fragmentoMaxCaracteres`), medio,
-fecha y enlace. Nunca se descarga el texto completo de los artículos.
+fecha y enlace.
+
+**Personas (`textoCompleto`):** para los `nombres` configurados se busca en Google News y se lee
+el artículo completo, porque suelen aparecer citados en el cuerpo y no en el titular. Del artículo
+solo se guardan los párrafos donde aparecen (como máximo `maxParrafos`). También se leen las
+noticias que coinciden con `tambienEnNoticiasDe`. En el correo van en una sección propia.
+
+**Palabras con contexto:** una palabra clave puede escribirse como
+`{ "palabra": "POP", "requiere": ["paciente*", "sanidad", …] }` y solo cuenta si en el titular o
+la entradilla aparece además alguna de `requiere`. Así se evita, por ejemplo, el K-POP.
 
 ## Sector público
 
