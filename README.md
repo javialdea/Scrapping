@@ -57,6 +57,19 @@ Una licitación vuelve a aparecer cuando cambia de estado (por ejemplo, al adjud
 
 Resultados en `resultados/sector-publico/AAAA-MM-DD.{html,csv,json}`, agrupados por fuente.
 
+## Plenos de distrito de Madrid
+
+```bash
+npm run plenos             # convocatorias nuevas desde la última vez
+npm run plenos -- --todos  # todas las publicadas ahora en el Tablón de Edictos
+```
+
+Recorre el Tablón de Edictos Electrónico del Ayuntamiento, descarga el PDF del orden del día
+de cada Pleno de Junta Municipal de Distrito y extrae su texto en
+`resultados/plenos/AAAA-MM-DD/` (un `.pdf` y un `.txt` por distrito, más `convocatorias.json`).
+La sede bloquea las peticiones que no vienen de un navegador, por eso usa Playwright con el
+Edge instalado en Windows, en modo oculto.
+
 ## Correo diario
 
 ```bash

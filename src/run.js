@@ -3,6 +3,7 @@ const tareas = {
   clipping: () => import('./clipping/index.js'),
   'sector-publico': () => import('./sector-publico/index.js'),
   diario: () => import('./diario/index.js'),
+  plenos: () => import('./plenos/index.js'),
 };
 
 const nombre = process.argv[2];

@@ -7,7 +7,8 @@
   "scripts": {
     "clipping": "node src/run.js clipping",
     "sector-publico": "node src/run.js sector-publico",
-    "diario": "node --env-file-if-exists=.env src/run.js diario"
+    "diario": "node --env-file-if-exists=.env src/run.js diario",
+    "plenos": "node src/run.js plenos"
   },
   "engines": {
     "node": ">=22"
@@ -16,6 +17,8 @@
     "cheerio": "^1.2.0",
     "fast-xml-parser": "^5.11.2",
     "nodemailer": "^10.0.16",
-    "rss-parser": "^3.13.0"
+    "playwright": "^1.64.0",
+    "rss-parser": "^3.13.0",
+    "unpdf": "^1.8.1"
   }
 }
