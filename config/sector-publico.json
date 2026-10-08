@@ -1,16 +1,66 @@
 {
   "palabrasClave": [
-    "discapacidad*",
-    "ley de dependencia",
-    "situación de dependencia",
-    "grado de dependencia",
-    "ayudas a la dependencia",
-    "ONCE",
-    "Fundación ONCE"
+    "POP",
+    "Plataforma de Organizaciones de Pacientes",
+    "Carina Escobar",
+    "Pedro Carrascal",
+    "discapacidad*"
   ],
   "organismos": [],
   "diasAtras": 1,
   "boe": { "activo": true },
-  "contratacion": { "activo": true, "maxPaginas": 10 },
+  "boletines": {
+    "activo": true,
+    "fuentes": [
+      {
+        "nombre": "BOPV (País Vasco)",
+        "feeds": ["https://www.euskadi.eus/bopv2/datos/Ultimo.xml"]
+      },
+      {
+        "nombre": "DOG (Galicia)",
+        "feeds": ["https://www.xunta.gal/diario-oficial-galicia/rss/Sumario_es.rss"]
+      },
+      {
+        "nombre": "DOE (Extremadura)",
+        "feeds": [
+          "https://doe.juntaex.es/rss/rss.php?seccion=1",
+          "https://doe.juntaex.es/rss/rss.php?seccion=2",
+          "https://doe.juntaex.es/rss/rss.php?seccion=3",
+          "https://doe.juntaex.es/rss/rss.php?seccion=4",
+          "https://doe.juntaex.es/rss/rss.php?seccion=5",
+          "https://doe.juntaex.es/rss/rss.php?seccion=6"
+        ]
+      },
+      {
+        "nombre": "BOC (Canarias)",
+        "feeds": [
+          "https://www.gobiernodecanarias.org/boc/feeds/capitulo/disposiciones_generales.rss",
+          "https://www.gobiernodecanarias.org/boc/feeds/capitulo/autoridades_personal_nombramientos.rss",
+          "https://www.gobiernodecanarias.org/boc/feeds/capitulo/autoridades_personal_oposiciones.rss",
+          "https://www.gobiernodecanarias.org/boc/feeds/capitulo/otras_resoluciones.rss",
+          "https://www.gobiernodecanarias.org/boc/feeds/capitulo/anuncios.rss",
+          "https://www.gobiernodecanarias.org/boc/feeds/capitulo/otros_anuncios.rss"
+        ]
+      },
+      {
+        "nombre": "BOC (Cantabria)",
+        "feeds": [
+          "https://www.cantabria.es/o/BOC/feed/6802081",
+          "https://www.cantabria.es/o/BOC/feed/6802084",
+          "https://www.cantabria.es/o/BOC/feed/6802085",
+          "https://www.cantabria.es/o/BOC/feed/6802086",
+          "https://www.cantabria.es/o/BOC/feed/6802087",
+          "https://www.cantabria.es/o/BOC/feed/6802089",
+          "https://www.cantabria.es/o/BOC/feed/6802090"
+        ]
+      },
+      {
+        "nombre": "BOCM (Madrid)",
+        "feeds": ["https://www.bocm.es/ultimo-boletin.xml"],
+        "tituloEnDescripcion": true
+      }
+    ]
+  },
+  "contratacion": { "activo": true, "maxPaginas": 10, "maxPaginasAgregadas": 60 },
   "subvenciones": { "activo": true, "maxPaginas": 30 }
 }

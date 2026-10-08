@@ -1,18 +1,16 @@
 {
   "palabrasClave": [
-    "discapacidad*",
-    "ley de dependencia",
-    "situación de dependencia",
-    "grado de dependencia",
-    "ayudas a la dependencia",
-    "ONCE",
-    "Fundación ONCE"
+    "POP",
+    "Plataforma de Organizaciones de Pacientes",
+    "Carina Escobar",
+    "Pedro Carrascal",
+    "discapacidad*"
   ],
   "busquedasGoogleNews": [
-    "discapacidad",
-    "\"ley de dependencia\" OR \"situación de dependencia\" OR \"grado de dependencia\" OR \"ayudas a la dependencia\"",
-    "ONCE",
-    "\"Fundación ONCE\""
+    "\"Plataforma de Organizaciones de Pacientes\"",
+    "\"Carina Escobar\"",
+    "\"Pedro Carrascal\"",
+    "discapacidad"
   ],
   "fuentes": [
     { "nombre": "El País", "rss": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada" },
