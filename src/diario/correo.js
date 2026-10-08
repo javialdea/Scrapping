@@ -43,7 +43,7 @@ export function componerCorreo(secciones, fecha) {
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;"><tr>${resumen}</tr></table>
       ${cuerpo}
       <p style="${FUENTE_LETRA}font-size:12px;color:${COLOR.suave};margin-top:32px;">
-        Fuentes: BOE, Plataforma de Contratación del Sector Público, BDNS y medios de comunicación (solo titular, fragmento y enlace).
+        Fuentes: BOE, boletines autonómicos, Plataforma de Contratación del Sector Público, BDNS y medios de comunicación (solo titular, fragmento y enlace).
       </p>
     </td></tr>
   </table>

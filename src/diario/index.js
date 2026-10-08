@@ -13,6 +13,7 @@ const SECCIONES = [
   { fuente: 'Plataforma de Contratación del Sector Público', titulo: 'Licitaciones', corto: 'licitaciones' },
   { fuente: 'Subvenciones (BDNS)', titulo: 'Subvenciones', corto: 'subvenciones' },
   { fuente: 'BOE', titulo: 'BOE', corto: 'BOE' },
+  { fuente: 'Boletines autonómicos', titulo: 'Boletines autonómicos', corto: 'boletines autonómicos' },
 ];
 
 export async function ejecutar() {

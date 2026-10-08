@@ -7,10 +7,11 @@ import { RAIZ, carpetaResultados, cargarVistos, guardarVistos, guardarDelDia, fe
 import * as boe from './boe.js';
 import * as contratacion from './contratacion.js';
 import * as subvenciones from './subvenciones.js';
+import * as boletines from './boletines.js';
 
 const RUTA_CONFIG = path.join(RAIZ, 'config', 'sector-publico.json');
 const CARPETA = carpetaResultados('sector-publico');
-const FUENTES = { boe, contratacion, subvenciones };
+const FUENTES = { boe, boletines, contratacion, subvenciones };
 
 export async function ejecutar() {
   const { guardar } = await recoger();
@@ -55,7 +56,7 @@ export async function recoger() {
   const guardar = async () => {
     await guardarDelDia(CARPETA, nuevos, {
       titulo: 'Sector público',
-      nota: 'Fuentes: BOE, Plataforma de Contratación del Sector Público y BDNS.',
+      nota: 'Fuentes: BOE, boletines autonómicos, Plataforma de Contratación del Sector Público y BDNS.',
       agruparPorFuente: true,
     });
     await guardarVistos(CARPETA, vistos);
